@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="row">
-        <h3>Your Gold: 0</h3>
+        <h3>Your Gold: {{gold}}</h3>
         <form action="/reset" method="POST" class="reset">
             <input type="submit" name="submit" value="Reset" />
         </form>
@@ -19,7 +19,7 @@
             <h3>Farm</h3>
             <p>(earns 10-20 gold)</p>
             <form action="/process_money" method="POST">
-                <input type="hidden" name="hidden" value="farm"/>
+                <input type="hidden" name="action" value="farm"/>
                 <input type="submit" name="submit" value="Find Gold!"/>
             </form>
         </div>
@@ -27,7 +27,7 @@
             <h3>Cave</h3>
             <p>(earns 5-10 gold)</p>
             <form action="/process_money" method="POST">
-                <input type="hidden" name="hidden" value="cave"/>
+                <input type="hidden" name="action" value="cave"/>
                 <input type="submit" name="submit" value="Find Gold!"/>
             </form>
         </div>
@@ -35,7 +35,7 @@
             <h3>House</h3>
             <p>(earns 2-5 gold)</p>
             <form action="/process_money" method="POST">
-                <input type="hidden" name="hidden" value="house"/>
+                <input type="hidden" name="action" value="house"/>
                 <input type="submit" name="submit" value="Find Gold!"/>
             </form>
         </div>
@@ -43,7 +43,7 @@
             <h3>Casino</h3>
             <p>(earns/takes 0-50 gold)</p>
             <form action="/process_money" method="POST">
-                <input type="hidden" name="hidden" value="casino"/>
+                <input type="hidden" name="action" value="casino"/>
                 <input type="submit" name="submit" value="Find Gold!"/>
             </form>
         </div>
@@ -53,16 +53,13 @@
     </div>
     <div class="row">
         <div class="activities">
+        {% if activities %}
             <ul>
-                <li class="earned">Example activity</li>
-                <li class="earned">Example activity</li>
-                <li class="earned">Example activity</li>
-                <li class="earned">Example activity</li>
-                <li class="lost">Example activity</li>
-                <li class="lost">Example activity</li>
-                <li class="lost">Example activity</li>
-                <li class="lost">Example activity</li>
+                {% for class, activity in activities %}
+                <li class={{class}}>{{activity}}</li>
+                {% endfor %}
             </ul>
+        {% endif %}
         </div>        
     </div>
 </body>
